@@ -1,0 +1,15 @@
+.main-custom{
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../assets/svgs/button-ativo.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    text-decoration: none;
+    
+}
+
+.main-custom h1{
+    font-size: 16px;
+}

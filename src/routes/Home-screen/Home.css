@@ -1,0 +1,98 @@
+/* Estilos para o contêiner principal */
+#main-home {
+    width: 40vh;
+    height: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: green; */
+}
+
+/* Estilos para o texto principal no contêiner */
+#main-home h1 {
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Estilos para o cabeçalho */
+#main-home .header {
+    width: 320px;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#main-home .header section:first-child{
+    width: 320px;
+    height: 83px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+/* Estilos para o ícone no cabeçalho */
+#main-home .header .icon {
+    width: 83px;
+    height: 83px;
+    border-radius: 100%;
+    background-color: grey;
+    background-position: center;
+    background-size:cover;
+}
+
+/* Estilos para a seção de informações no cabeçalho */
+#main-home .header .div {
+    width: 217px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Estilos para as linhas no cabeçalho */
+#main-home .header .div span {
+    width: 100%;
+    height: 50px;
+    display: flex;
+}
+
+/* Estilos para o status no cabeçalho */
+#main-home .header .div span .status {
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background-color: green;
+}
+
+/* Estilos para a segunda linha no cabeçalho */
+#main-home .header .div span:nth-child(2) {
+    display: flex;
+    gap: 5px;
+}
+
+/* Estilos para o texto na segunda linha do cabeçalho */
+#main-home .header .div span:nth-child(2) h1 {
+    font-size: 12px;
+}
+
+#main-home .header .div .button{
+    width: 68px;
+    height: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    background-color: grey;
+}
+#main-home .header .div .button h1{
+    color: #ffffff;
+}
+
+#main-home .header section:last-child p{
+    color: #ffffff;
+    font-size: 12px;
+    text-align: center;
+}

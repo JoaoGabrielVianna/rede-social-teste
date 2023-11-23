@@ -1,0 +1,21 @@
+#main-login {
+    width: 40vh;
+    height: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+}
+
+#main-login span {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+#main-login span:last-child {
+    margin-top: 40px;
+}

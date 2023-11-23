@@ -1,0 +1,29 @@
+#main-welcome {
+    width: 40vh;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* background-color: rgb(76, 76, 76); */
+
+
+}
+
+#main-welcome h1 {
+    font-size: 26px;
+    text-align: center;
+}
+
+#main-welcome p {
+    color: #ffffff;
+    width: 270px;
+    height: 65px;
+    align-self: center;
+    font-size: 10px;
+}
+
+#main-welcome span {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

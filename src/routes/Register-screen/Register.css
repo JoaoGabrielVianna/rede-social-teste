@@ -1,0 +1,185 @@
+#main-register {
+    width: 40vh;
+    height: 297px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+
+}
+
+/* #main-register span{
+
+    background-color: green;
+} */
+
+/* LAYER 1 */
+#main-register .span-layer-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+
+}
+
+#main-register .span-layer-1 h1 {
+    font-size: 14px;
+}
+
+#main-register .span-layer-1 span {
+    align-self: auto;
+}
+
+#main-register .span-layer-1 span:last-child {
+    align-self: auto;
+}
+
+
+/* LAYER 2 */
+#main-register .span-layer-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+
+}
+
+#main-register .span-layer-2 span {
+    align-self: center;
+}
+
+#main-register .span-layer-2 span:last-child {
+    align-self: auto;
+}
+
+/* LAYER 3 */
+#main-register .span-layer-3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+
+}
+
+#main-register .span-layer-3 span {
+    align-self: center;
+}
+
+#main-register .span-layer-3 span:last-child {
+    align-self: auto;
+}
+
+/* LAYER 4 */
+#main-register .span-layer-4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+
+}
+
+#main-register .span-layer-4 span {
+    align-self: center;
+}
+
+#main-register .span-layer-4 span:last-child {
+    align-self: auto;
+}
+
+/* LAYER 5 */
+#main-register .span-layer-5 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    gap: 15px;
+}
+
+#main-register .span-layer-5 span {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    gap: 30px;
+
+}
+
+#main-register .span-layer-5 span h1 {
+    font-size: 14px;
+}
+
+#main-register .span-layer-5 span:last-child {
+    align-self: auto;
+}
+
+#main-register .span-layer-5 span .photo-perfil {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    position: relative;
+
+}
+
+#main-register .span-layer-5 span .photo-perfil .input {
+    width: 46px;
+    height: 46px;
+    border-radius: 100%;
+    position: absolute;
+    cursor: pointer;
+    right: 0;
+    bottom: 0;
+    background-image: url('../../assets/svgs/edit-icon.svg');
+    background-position: center;
+}
+
+#main-register .span-layer-5 span .photo-perfil .input input {
+    display: none;
+}
+
+#main-register .span-layer-5 span .icon {
+    width: 114px;
+    height: 114px;
+    align-self: center;
+    border-radius: 100%;
+    background-position: center;
+}
+
+/* LAYER 6 */
+#main-register .span-layer-6 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+#main-register .span-layer-6 span {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    gap: 50px;
+
+}
+
+#main-register .span-layer-6 span:last-child {
+    align-self: auto;
+}
+
+#main-register .span-layer-6 span .icon {
+    width: 100px;
+    height: 100px;
+    align-self: center;
+    border-radius: 100%;
+    background-color: rgb(17, 255, 17);
+}
+
+
+
+
+
+#main-register h1 {
+    text-align: center;
+
+}

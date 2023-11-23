@@ -1,6 +1,6 @@
 /* Estilos para o contêiner principal */
 #main-home {
-    width: 40vh;
+    width: 100vh;
     height: 300px;
     position: relative;
     display: flex;

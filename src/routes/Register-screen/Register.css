@@ -144,6 +144,7 @@
     height: 114px;
     align-self: center;
     border-radius: 100%;
+    object-fit: cover;
     background-position: center;
 }
 

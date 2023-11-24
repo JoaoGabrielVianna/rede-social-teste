@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { CustomButton, CustomButtonEmail } from '../../components/Custom-Button/CustomButton';
+import { CustomButtonEmail, CustomButtonPink } from '../../components/Custom-Button/CustomButton';
 import CustomInput from '../../components/Custom-Input/CustomInput';
 import GoBackButton from '../../components/GoBack-Button/GoBackButton';
 import { useUserAuth } from '../../context/userAuthContext';
@@ -95,19 +95,19 @@ export default function RegisterPage() {
 
     const InputChangePhoto = (e) => {
         const selectedFile = e.target.files[0];
-      
+
         // Atualiza o estado setPhoto com o arquivo selecionado
         setPhoto(selectedFile);
-      
+
         // Se desejar, você também pode armazenar ou exibir informações sobre o arquivo
         console.log('Nome do arquivo:', selectedFile ? selectedFile.name : 'Nenhum arquivo selecionado');
         console.log('Tipo do arquivo:', selectedFile ? selectedFile.type : 'Nenhum arquivo selecionado');
         console.log('Tamanho do arquivo:', selectedFile ? selectedFile.size : 'Nenhum arquivo selecionado');
-      };
+    };
 
     const InputClickPhoto = () => {
         fileInputRef.current.click();
-      };
+    };
 
 
 
@@ -134,7 +134,7 @@ export default function RegisterPage() {
                                 <CustomInput placehover='Nome de usuário' onChange={InputUser} />
                             </span>
                             <span>
-                                <CustomButton text={'Avançar'} ativo desativado={buttonOpacity} onClick={continueButton} />
+                                <CustomButtonPink text={'Avançar'} ativo desativado={buttonOpacity} onClick={continueButton} />
                             </span>
                         </ span> : ''}
                     {layer === 3 ?
@@ -144,7 +144,7 @@ export default function RegisterPage() {
                                 <CustomInput placehover='Senha' onChange={InputPassword} />
                             </span>
                             <span>
-                                <CustomButton text={'Avançar'} onClick={continueButton} ativo desativado={buttonOpacity} />
+                                <CustomButtonPink text={'Avançar'} onClick={continueButton} ativo desativado={buttonOpacity} />
                             </span>
                         </ span> : ''}
                     {layer === 4 ?
@@ -154,7 +154,7 @@ export default function RegisterPage() {
                                 <CustomInput placehover='Email' onChange={InputEmail} />
                             </span>
                             <span>
-                                <CustomButton text={'Avançar'} onClick={continueButton} ativo desativado={buttonOpacity} />
+                                <CustomButtonPink text={'Avançar'} onClick={continueButton} ativo desativado={buttonOpacity} />
                             </span>
                         </ span> : ''}
 
@@ -164,12 +164,12 @@ export default function RegisterPage() {
                                 <h1>Escolha um foto de perfil:{user}</h1>
                                 <div className="photo-perfil">
                                     <div className="icon" style={{ backgroundImage: `url(${photo ? URL.createObjectURL(photo) : perfil_anonimo})` }}></div>
-                                    <div className="input" onClick={InputClickPhoto} ><input type="file" id="fileInput" ref={fileInputRef} onChange={InputChangePhoto}  accept="image/*" /></div>
+                                    <div className="input" onClick={InputClickPhoto} ><input type="file" id="fileInput" ref={fileInputRef} onChange={InputChangePhoto} accept="image/*" /></div>
                                 </div>
 
                             </span>
                             <span>
-                                <CustomButton text={'Avançar'} onClick={continueButton} ativo />
+                                <CustomButtonPink text={'Avançar'} onClick={continueButton} ativo />
                             </span>
                         </ span> : ''}
 
@@ -180,7 +180,7 @@ export default function RegisterPage() {
                                 <h1>Bem-vindo ao APP, {user}</h1>
                             </span>
                             <span>
-                                <CustomButton text={'Concluir o cadastro'} onClick={registerButton} ativo />
+                                <CustomButtonPink text={'Concluir o cadastro'} onClick={registerButton} ativo />
                             </span>
                         </ span> : ''}
                 </main>

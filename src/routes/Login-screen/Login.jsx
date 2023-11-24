@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CustomButton } from '../../components/Custom-Button/CustomButton'
+import { CustomButtonPink } from '../../components/Custom-Button/CustomButton'
 import CustomInput from '../../components/Custom-Input/CustomInput'
 import GoBackButton from '../../components/GoBack-Button/GoBackButton'
 import './Login.css'
@@ -68,10 +68,10 @@ export default function LoginPage() {
                     <span>
                         <CustomInput placehover='Digite o seu e-mail...' onChange={InputEmail} />
                         <CustomInput placehover='Digite a sua senha...' onChange={InputPassword} />
-                        <CustomButton text={'Google'} link={'#'} ativo onClick={GoogleButton} />
+                        <CustomButtonPink text={'Google'} link={'#'} ativo onClick={GoogleButton} />
                     </span>
                     <span>
-                        <CustomButton text={'Login'} link={'#'} ativo desativado={buttonOpacity} onClick={loginButton} />
+                        <CustomButtonPink text={'Login'} link={'#'} ativo desativado={buttonOpacity} onClick={loginButton} />
                     </span>
                 </main>
             </>

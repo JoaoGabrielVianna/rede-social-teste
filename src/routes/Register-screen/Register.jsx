@@ -10,7 +10,7 @@ import perfil_anonimo from '../../assets/svgs/perfil-anonimo.svg'
 
 export default function RegisterPage() {
     // Estados para controlar a camada (layer), opacidade do botão, mensagem de erro, e informações do usuário, e-mail e senha
-    const [layer, setLayer] = useState(1);
+    const [layer, setLayer] = useState(5);
     const [buttonOpacity, setButtonOpacity] = useState(true);
     const [error, setError] = useState('');
     const [user, setUser] = useState('');
@@ -163,7 +163,7 @@ export default function RegisterPage() {
                             <span>
                                 <h1>Escolha um foto de perfil:{user}</h1>
                                 <div className="photo-perfil">
-                                    <div className="icon" style={{ backgroundImage: `url(${photo ? URL.createObjectURL(photo) : perfil_anonimo})` }}></div>
+                                    <img className="icon" src={photo ? URL.createObjectURL(photo) : perfil_anonimo} />
                                     <div className="input" onClick={InputClickPhoto} ><input type="file" id="fileInput" ref={fileInputRef} onChange={InputChangePhoto} accept="image/*" /></div>
                                 </div>
 

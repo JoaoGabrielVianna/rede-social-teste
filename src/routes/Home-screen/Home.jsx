@@ -20,7 +20,7 @@ export default function HomePage() {
         <>
         
             <main id="main-home">
-                <CustomHeader/>
+                <CustomHeader text='Perfil'/>
                 <header className="header">
                     <section>
                         <div className="icon" style={{backgroundImage: `url(${user.photoURL ? user.photoURL : perfil_anonimo})`}}/>

@@ -141,7 +141,7 @@ export default function RegisterPage() {
                         <span className='span-layer-3'>
                             <GoBackButton onClick={returnButton} />
                             <span>
-                                <CustomInput placehover='Senha' onChange={InputPassword} />
+                                <CustomInput placehover='Senha' onChange={InputPassword} type='password' />
                             </span>
                             <span>
                                 <CustomButtonPink text={'Avançar'} onClick={continueButton} ativo desativado={buttonOpacity} />
@@ -151,7 +151,7 @@ export default function RegisterPage() {
                         <span className='span-layer-4'>
                             <GoBackButton onClick={returnButton} />
                             <span>
-                                <CustomInput placehover='Email' onChange={InputEmail} />
+                                <CustomInput placehover='Email' onChange={InputEmail} type='email' />
                             </span>
                             <span>
                                 <CustomButtonPink text={'Avançar'} onClick={continueButton} ativo desativado={buttonOpacity} />

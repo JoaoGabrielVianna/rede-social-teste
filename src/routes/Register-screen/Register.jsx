@@ -10,7 +10,7 @@ import perfil_anonimo from '../../assets/svgs/perfil-anonimo.svg'
 
 export default function RegisterPage() {
     // Estados para controlar a camada (layer), opacidade do botão, mensagem de erro, e informações do usuário, e-mail e senha
-    const [layer, setLayer] = useState(5);
+    const [layer, setLayer] = useState(1);
     const [buttonOpacity, setButtonOpacity] = useState(true);
     const [error, setError] = useState('');
     const [user, setUser] = useState('');

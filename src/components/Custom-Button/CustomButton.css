@@ -1,16 +1,40 @@
-.main-custom{
+.main-custom-pink{
     width: 100%;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url('../../assets/svgs/button-ativo.svg');
     background-position: center;
     background-repeat: no-repeat;
-    text-decoration: none;
+    text-decoration: none; 
+}
 
-    
+.main-custom-white{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../assets/svgs/button-desativado.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    text-decoration: none; 
+}
+
+.main-custom-email{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../assets/svgs/button-email.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    text-decoration: none; 
 }
 
 .main-custom h1{
     font-size: 16px;
 }
+

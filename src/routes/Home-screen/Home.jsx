@@ -2,6 +2,7 @@ import './Home.css'
 import { useNavigate } from "react-router-dom";
 import perfil_anonimo from '../../assets/svgs/perfil-anonimo.svg'
 import { useUserAuth } from "../../context/userAuthContext";
+import CustomHeader from '../../components/Custom-Header/CustomHeader';
 
 
 export default function HomePage() {
@@ -19,6 +20,7 @@ export default function HomePage() {
         <>
         
             <main id="main-home">
+                <CustomHeader/>
                 <header className="header">
                     <section>
                         <div className="icon" style={{backgroundImage: `url(${user.photoURL ? user.photoURL : perfil_anonimo})`}}/>

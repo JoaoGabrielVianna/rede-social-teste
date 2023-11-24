@@ -164,16 +164,19 @@
 
 }
 
+#main-register .span-layer-6 span h1{
+    font-size: 30px;
+}
+
 #main-register .span-layer-6 span:last-child {
     align-self: auto;
 }
 
 #main-register .span-layer-6 span .icon {
-    width: 100px;
-    height: 100px;
+    width: 114px;
+    height: 114px;
     align-self: center;
     border-radius: 100%;
-    background-color: rgb(17, 255, 17);
 }
 
 

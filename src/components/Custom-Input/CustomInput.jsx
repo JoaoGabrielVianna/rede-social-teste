@@ -1,5 +1,4 @@
 import './CustomInput.css'
-import customInput from '../../assets/svgs/input.svg'
 export default function CustomInput({ icon, type = 'text', placehover= 'Digite algo...', onChange }) {
     return (
         <>

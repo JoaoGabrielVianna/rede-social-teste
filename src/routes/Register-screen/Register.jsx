@@ -176,8 +176,8 @@ export default function RegisterPage() {
                     {layer === 6 ?
                         <span className='span-layer-6'>
                             <span>
-                                <div className="icon"></div>
-                                <h1>Bem-vindo ao APP, {user}</h1>
+                                <img className="icon" src={photo ? URL.createObjectURL(photo) : perfil_anonimo}></img>
+                                <h1>Bem-vindo ao APP,<br/> {user}</h1>
                             </span>
                             <span>
                                 <CustomButtonPink text={'Concluir o cadastro'} onClick={registerButton} ativo />

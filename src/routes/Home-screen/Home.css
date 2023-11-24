@@ -1,13 +1,12 @@
 /* Estilos para o contêiner principal */
 #main-home {
     width: 100vh;
-    height: 300px;
+    height: 100vh;
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    /* background-color: green; */
+    
 }
 
 /* Estilos para o texto principal no contêiner */

@@ -10,7 +10,6 @@ import CustomAlert from '../../components/Custom-Alert/CustomAlert';
 export default function LoginPage() {
     // Estados para controlar o botão, mensagens de erro e dados de entrada
     const [buttonOpacity, setButtonOpacity] = useState(true);
-    const [verificarButton, setVerificarButton] = useState(0)
     const [error, setError] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

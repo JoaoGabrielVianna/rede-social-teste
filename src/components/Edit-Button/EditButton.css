@@ -1,0 +1,14 @@
+#main-EditButton{
+    width: 87px;
+    height: 26px;
+    border-radius: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+
+#main-EditButton h1{
+    color: #000000;
+}

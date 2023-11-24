@@ -5,17 +5,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
 }
 
-/* Estilos para o texto principal no contêiner */
-#main-home h1 {
-    font-size: 16px;
-    text-align: center;
-}
-
-/* Estilos para o cabeçalho */
-#main-home .header {
+#main-UserProfile {
     width: 320px;
     height: 160px;
     display: flex;
@@ -23,74 +16,53 @@
     gap: 15px;
 }
 
-#main-home .header section:first-child{
-    width: 320px;
+#main-UserProfile section:first-child {
+    width: 100%;
     height: 83px;
     display: flex;
     justify-content: space-between;
-
 }
 
-/* Estilos para o ícone no cabeçalho */
-#main-home .header .icon {
+#main-UserProfile section:first-child img {
     width: 83px;
     height: 83px;
     border-radius: 100%;
-    background-color: grey;
-    background-position: center;
-    background-size:cover;
 }
 
-/* Estilos para a seção de informações no cabeçalho */
-#main-home .header .div {
+#main-UserProfile section:first-child span {
     width: 217px;
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    justify-content: space-between;
+    
+
 }
 
-/* Estilos para as linhas no cabeçalho */
-#main-home .header .div span {
-    width: 100%;
-    height: 50px;
+#main-UserProfile section:first-child span h1 {
+    font-size: 14px;
+}
+
+#main-UserProfile section:first-child span div {
+    height: 25px;
     display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
 }
 
-/* Estilos para o status no cabeçalho */
-#main-home .header .div span .status {
+#main-UserProfile section:first-child span div .status {
     width: 15px;
     height: 15px;
     border-radius: 100%;
     background-color: green;
 }
 
-/* Estilos para a segunda linha no cabeçalho */
-#main-home .header .div span:nth-child(2) {
-    display: flex;
-    gap: 5px;
+#main-UserProfile section:first-child span div .status h1 {
+    font-size: 50px;
 }
 
-/* Estilos para o texto na segunda linha do cabeçalho */
-#main-home .header .div span:nth-child(2) h1 {
+#main-UserProfile section:last-child p{
     font-size: 12px;
-}
-
-#main-home .header .div .button{
-    width: 68px;
-    height: 26px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 15px;
-    background-color: grey;
-}
-#main-home .header .div .button h1{
     color: #ffffff;
-}
-
-#main-home .header section:last-child p{
-    color: #ffffff;
-    font-size: 12px;
-    text-align: center;
 }

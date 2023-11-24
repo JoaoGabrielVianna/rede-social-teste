@@ -13,8 +13,8 @@ export default function WelcomePage() {
                     <h1>Seja bem-vindo ao <br />NOME DO APP</h1>
                     <p>Lorem ipsum dolor sit amet. Ad minima voluptatum aut volupt explicabo exercitationem ia. Ut incidu peros as</p>
                     <span>
-                        <CustomButton text={'Login'} link={'/login'} ativo={true} />
-                        <CustomButton text={'Registrar'} link={'/register'} ativo={false} />
+                        <CustomButton text={'Login'} link={'/login'} ativo />
+                        <CustomButton text={'Registrar'} link={'/register'} />
                     </span>
                 </main>
             </>)

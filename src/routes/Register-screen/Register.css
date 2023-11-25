@@ -176,6 +176,39 @@
     width: 114px;
     height: 114px;
     align-self: center;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+/* LAYER 7 */
+#main-register .span-layer-7 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+#main-register .span-layer-7 span {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    gap: 50px;
+
+}
+
+#main-register .span-layer-7 span h1{
+    font-size: 30px;
+}
+
+#main-register .span-layer-7 span:last-child {
+    align-self: auto;
+}
+
+#main-register .span-layer-7 span .icon {
+    width: 114px;
+    height: 114px;
+    align-self: center;
+    object-fit: cover;
     border-radius: 100%;
 }
 

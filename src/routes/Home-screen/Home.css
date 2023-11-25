@@ -1,68 +1,153 @@
-/* Estilos para o contêiner principal */
 #main-home {
-    height: 100vh;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
+  width: 360px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  /* background-color: grey; */
 }
 
+/* Componente para o header do perfil */
 #main-UserProfile {
-    width: 320px;
-    height: 160px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  width: 320px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-#main-UserProfile section:first-child {
-    width: 100%;
-    height: 83px;
-    display: flex;
-    justify-content: space-between;
+/* First Child contem a foto do usuario,  faculdade e os botoes */
+#main-UserProfile section:nth-child(1) {
+  height: 83px;
+  display: flex;
+  justify-content: space-between;
 }
 
-#main-UserProfile section:first-child img {
-    width: 83px;
-    height: 83px;
-    border-radius: 100%;
+/* Imagem de Perfil */
+#main-UserProfile section:nth-child(1) img {
+  width: 83px;
+  border-radius: 100%;
+  object-fit: cover;
 }
 
-#main-UserProfile section:first-child span {
-    width: 217px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    
+/* Secao das informacoes do usuario (nome, faculdade...) */
+#main-UserProfile section:nth-child(1) div {
+  width: 217px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Tamanho dos spans */
+#main-UserProfile section:nth-child(1) div span {
+  width: 100%;
+  height: 25px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Tamanho dos h1 da secao */
+#main-UserProfile section:nth-child(1) div span h1 {
+  font-size: 14px;
+}
+
+/* tamanho do status de verificacao da conta */
+#main-UserProfile section:nth-child(1) div span .status {
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+}
+
+/* dando um espaco para a secao da faculdade  */
+#main-UserProfile section:nth-child(1) div span:nth-child(2) {
+  gap: 5px;
+}
+
+/* dando um espaco entre os botoes */
+#main-UserProfile section:nth-child(1) div span:nth-child(3) {
+  gap: 15px;
+}
+
+/* Tamanho da letra da biografia */
+#main-UserProfile section:nth-child(2) p {
+  font-size: 12px;
+}
+
+
+/* ==================================================== */
+/* Loading-skeleton */
+/* ==================================================== */
+
+#main-UserProfile-loading-skeleton {
+  width: 320px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#main-UserProfile-loading-skeleton section:nth-child(1) {
+  height: 83px;
+  display: flex;
+  justify-content: space-between;
 
 }
 
-#main-UserProfile section:first-child span h1 {
-    font-size: 14px;
+#main-UserProfile-loading-skeleton section:nth-child(1) img {
+  width: 83px;
+  border-radius: 100%;
+  object-fit: cover;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
 }
 
-#main-UserProfile section:first-child span div {
-    height: 25px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 5px;
+#main-UserProfile-loading-skeleton section:nth-child(1) div {
+  width: 217px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
 }
 
-#main-UserProfile section:first-child span div .status {
-    width: 15px;
-    height: 15px;
-    border-radius: 100%;
-    background-color: green;
+#main-UserProfile-loading-skeleton section:nth-child(1) div span {
+  width: 100%;
+  height: 25px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
 }
 
-#main-UserProfile section:first-child span div .status h1 {
-    font-size: 50px;
+#main-UserProfile-loading-skeleton section:nth-child(1) div span h1 {
+  font-size: 14px;
 }
 
-#main-UserProfile section:last-child p{
-    font-size: 12px;
-    color: #ffffff;
+#main-UserProfile-loading-skeleton section:nth-child(1) div span .status {
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+}
+
+#main-UserProfile-loading-skeleton section:nth-child(1) div span:nth-child(2) {
+  gap: 5px;
+}
+
+#main-UserProfile-loading-skeleton section:nth-child(1) div span:nth-child(3) {
+  gap: 15px;
+}
+
+#main-UserProfile-loading-skeleton section:nth-child(2) p {
+  width: 320px;
+  height: 58px;
+  font-size: 12px;
+  border-radius: 15px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
 }

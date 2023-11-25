@@ -1,21 +1,14 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut,
-  GoogleAuthProvider,
-  signInWithPopup,
-  updateProfile,
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup, updateProfile, deleteUser, EmailAuthProvider, reauthenticateWithCredential
 } from "firebase/auth";
 import { auth, db, storage } from "../services/firebaseConfig";
-import { doc, setDoc } from "firebase/firestore";
+import { deleteDoc, doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { deleteObject, getDownloadURL, getMetadata, list, listAll, ref, uploadBytes } from "firebase/storage";
 const userAuthContext = createContext();
 
 
-
+0
 
 export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState({});
@@ -39,10 +32,13 @@ export function UserAuthContextProvider({ children }) {
 
       // Atualiza as informações do usuário no Firestore, incluindo a URL da photo
       await setDoc(doc(db, "users", userCredential.user.uid), {
+        biografia: '',
         name: displayName,
         email: email,
         faculVerification: false,
         photoURL: photoURL,
+        senha: password,
+        uid: userCredential.user.uid
       });
 
       return { user: userCredential.user, autoLogin: false };
@@ -52,9 +48,9 @@ export function UserAuthContextProvider({ children }) {
   }
   async function uploadPhoto(uid, photo) {
     try {
-      const storageRef = ref(storage, `user_profiles/${uid}/photoURL`);
+      const storageRef = ref(storage, `user_profiles/${uid}`);
       await uploadBytes(storageRef, photo);
-  
+
       // Obter a URL da foto após o upload
       const photoURL = await getDownloadURL(storageRef);
       return photoURL;
@@ -69,6 +65,69 @@ export function UserAuthContextProvider({ children }) {
     const googleAuthProvider = new GoogleAuthProvider();
     return signInWithPopup(auth, googleAuthProvider);
   }
+
+  async function deleteUserAccount({ uid, password }) {
+    console.log('ciclou')
+
+    // Reautenticar o usuário
+    const credential = EmailAuthProvider.credential(user.email, password);
+    await reauthenticateWithCredential(user, credential);
+
+    // Exclua o usuário no Firebase Authentication
+    await deleteUser(user);
+
+    // Exclua os dados do usuário no Firestore
+    const userDocRef = doc(db, "users", user.uid);
+    await deleteDoc(userDocRef);
+
+    const desertRef = ref(storage, `user_profiles/${uid}`);
+
+    // Delete the file
+    deleteObject(desertRef).then(() => {
+      console.log('excluiu')
+      // File deleted successfully
+    }).catch((error) => {
+      console.log('nao excluiu')
+      // Uh-oh, an error occurred!
+    });
+
+    // Desconecte o usuário (opcional, dependendo do seu fluxo)
+    await signOut(auth);
+
+
+    // const user = auth.currentUser;
+
+    // if (user) {
+    //   try {
+    //     // Reautenticar o usuário
+    //     const credential = EmailAuthProvider.credential(user.email, password);
+    //     await reauthenticateWithCredential(user, credential);
+
+    //     // Exclua o usuário no Firebase Authentication
+    //     await deleteUser(user);
+
+    //     // Exclua os dados do usuário no Firestore
+    //     const userDocRef = doc(db, "users", user.uid);
+    //     await deleteDoc(userDocRef);
+
+    //     // Exclua a pasta correspondente no Firebase Storage
+
+
+    //     // Desconecte o usuário (opcional, dependendo do seu fluxo)
+    //     await signOut(auth);
+
+    //     console.log("Usuário e dados associados excluídos com sucesso.");
+    //   } catch (error) {
+    //     console.error("Erro ao excluir usuário e dados associados:", error.message);
+    //   }
+    // } else {
+    //   console.log("Nenhum usuário autenticado encontrado.");
+    // }
+  }
+
+
+
+
 
   useEffect(() => {
     const checkAuthState = () => {
@@ -99,7 +158,7 @@ export function UserAuthContextProvider({ children }) {
   return (
 
     <userAuthContext.Provider
-      value={{ user, logIn, signUp, logOut, googleSignIn, signed: !!user }}
+      value={{ user, logIn, signUp, logOut, googleSignIn, deleteUserAccount, signed: !!user }}
     >
       {children}
     </userAuthContext.Provider>

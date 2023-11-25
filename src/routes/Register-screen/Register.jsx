@@ -9,7 +9,15 @@ import { useNavigate } from 'react-router-dom';
 import perfil_anonimo from '../../assets/svgs/perfil-anonimo.svg'
 
 export default function RegisterPage() {
-    // Estados para controlar a camada (layer), opacidade do botão, mensagem de erro, e informações do usuário, e-mail e senha
+    // Estados para controlar a camada (layer), opacidade do botão, mensagem de erro, e informações do usuário, e-mail e senha.
+    // Layer 1: Pede ao usuário para escolher o método de registro.
+    // Layer 2: Pede ao usuário seu nome de usuário.
+    // Layer 3: Pede ao usuário sua senha.
+    // Layer 4: Pede ao usuário seu e-mail.
+    // Layer 5: Pede ao usuário uma foto para seu perfil.
+    // Layer 6: *TODO, fazer ajuste da foto*
+    // Layer 7: Pede ao usuário para concluir o cadastro.
+
     const [layer, setLayer] = useState(1);
     const [buttonOpacity, setButtonOpacity] = useState(true);
     const [error, setError] = useState('');
@@ -177,7 +185,18 @@ export default function RegisterPage() {
                         <span className='span-layer-6'>
                             <span>
                                 <img className="icon" src={photo ? URL.createObjectURL(photo) : perfil_anonimo}></img>
-                                <h1>Bem-vindo ao APP,<br/> {user}</h1>
+                                <h1>Bem-vindo ao APP,<br /> {user}</h1>
+                            </span>
+                            <span>
+                                <CustomButtonPink text={'Concluir o cadastro'} onClick={registerButton} ativo />
+                            </span>
+                        </ span> : ''}
+
+                        {layer === 7 ?
+                        <span className='span-layer-7'>
+                            <span>
+                                <img className="icon" src={photo ? URL.createObjectURL(photo) : perfil_anonimo}></img>
+                                <h1>Bem-vindo ao APP,<br /> {user}</h1>
                             </span>
                             <span>
                                 <CustomButtonPink text={'Concluir o cadastro'} onClick={registerButton} ativo />

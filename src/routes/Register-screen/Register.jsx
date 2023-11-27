@@ -8,6 +8,8 @@ import CustomAlert from '../../components/Custom-Alert/CustomAlert';
 import { useNavigate } from 'react-router-dom';
 import perfil_anonimo from '../../assets/svgs/perfil-anonimo.svg'
 
+import email_icon from '../../assets/svgs/icon-email.svg';
+
 export default function RegisterPage() {
     // Estados para controlar a camada (layer), opacidade do botão, mensagem de erro, e informações do usuário, e-mail e senha.
     // Layer 1: Pede ao usuário para escolher o método de registro.
@@ -139,7 +141,7 @@ export default function RegisterPage() {
                         <span className='span-layer-2'>
                             <GoBackButton onClick={returnButton} />
                             <span>
-                                <CustomInput placehover='Nome de usuário' onChange={InputUser} />
+                                <CustomInput title='usuário' placehover='Nome de usuário' onChange={InputUser} />
                             </span>
                             <span>
                                 <CustomButtonPink text={'Avançar'} ativo desativado={buttonOpacity} onClick={continueButton} />
@@ -149,7 +151,7 @@ export default function RegisterPage() {
                         <span className='span-layer-3'>
                             <GoBackButton onClick={returnButton} />
                             <span>
-                                <CustomInput placehover='Senha' onChange={InputPassword} type='password' />
+                                <CustomInput title='senha' placehover='Digite sua senha' onChange={InputPassword} type='password' />
                             </span>
                             <span>
                                 <CustomButtonPink text={'Avançar'} onClick={continueButton} ativo desativado={buttonOpacity} />
@@ -159,7 +161,7 @@ export default function RegisterPage() {
                         <span className='span-layer-4'>
                             <GoBackButton onClick={returnButton} />
                             <span>
-                                <CustomInput placehover='Email' onChange={InputEmail} type='email' />
+                                <CustomInput icon={email_icon} title='e-mail' placehover='Digite seu e-mail' onChange={InputEmail} type='email' />
                             </span>
                             <span>
                                 <CustomButtonPink text={'Avançar'} onClick={continueButton} ativo desativado={buttonOpacity} />
@@ -192,7 +194,7 @@ export default function RegisterPage() {
                             </span>
                         </ span> : ''}
 
-                        {layer === 7 ?
+                    {layer === 7 ?
                         <span className='span-layer-7'>
                             <span>
                                 <img className="icon" src={photo ? URL.createObjectURL(photo) : perfil_anonimo}></img>

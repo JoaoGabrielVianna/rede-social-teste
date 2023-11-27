@@ -38,6 +38,9 @@ export function UserAuthContextProvider({ children }) {
         faculVerification: false,
         photoURL: photoURL,
         senha: password,
+        seguidores: 0,
+        seguindo: 0,
+        selos: 0,
         uid: userCredential.user.uid
       });
 
@@ -95,34 +98,6 @@ export function UserAuthContextProvider({ children }) {
     await signOut(auth);
 
 
-    // const user = auth.currentUser;
-
-    // if (user) {
-    //   try {
-    //     // Reautenticar o usuário
-    //     const credential = EmailAuthProvider.credential(user.email, password);
-    //     await reauthenticateWithCredential(user, credential);
-
-    //     // Exclua o usuário no Firebase Authentication
-    //     await deleteUser(user);
-
-    //     // Exclua os dados do usuário no Firestore
-    //     const userDocRef = doc(db, "users", user.uid);
-    //     await deleteDoc(userDocRef);
-
-    //     // Exclua a pasta correspondente no Firebase Storage
-
-
-    //     // Desconecte o usuário (opcional, dependendo do seu fluxo)
-    //     await signOut(auth);
-
-    //     console.log("Usuário e dados associados excluídos com sucesso.");
-    //   } catch (error) {
-    //     console.error("Erro ao excluir usuário e dados associados:", error.message);
-    //   }
-    // } else {
-    //   console.log("Nenhum usuário autenticado encontrado.");
-    // }
   }
 
 

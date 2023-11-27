@@ -1,6 +1,6 @@
 #main-EditButton{
-    width: 87px;
-    height: 26px;
+    width: 25px;
+    height: 25px;
     border-radius: 35px;
     display: flex;
     justify-content: center;
@@ -9,6 +9,8 @@
     cursor: pointer;
 }
 
-#main-EditButton h1{
-    color: #000000;
+#main-EditButton img{
+    width: 19px;
+    height: 19px;
+    /* background-color: green; */
 }

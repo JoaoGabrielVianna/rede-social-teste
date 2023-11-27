@@ -1,11 +1,15 @@
 import './CustomInput.css'
-export default function CustomInput({ icon, type = 'text', placehover= 'Digite algo...', onChange }) {
+import help_icon from '../../assets/svgs/icon-help.svg'
+
+export default function CustomInput({ icon, type = 'text', placehover = 'Digite algo...', onChange, title = 'text' }) {
     return (
         <>
             <main id="main-CustomInput" >
-                <div className='icon'></div>
+                <div>
+                    <p>{title}</p>
+                </div>
+                <img src={icon ? icon : help_icon} className='icon' />
                 <input type={type} placeholder={placehover} onChange={onChange} />
-                {/* <div className='icon2'></div> */}
             </main>
         </>
     )

@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../../context/userAuthContext';
 import CustomAlert from '../../components/Custom-Alert/CustomAlert';
 
+import email_icon from '../../assets/svgs/icon-email.svg'
 export default function LoginPage() {
     // Estados para controlar o botão, mensagens de erro e dados de entrada
     const [buttonOpacity, setButtonOpacity] = useState(true);
@@ -74,9 +75,9 @@ export default function LoginPage() {
                     {error && <CustomAlert text={error} />}
                     <GoBackButton local={'/'} />
                     <span>
-                        <CustomInput placehover='Digite o seu e-mail...' onChange={InputEmail} />
-                        <CustomInput placehover='Digite a sua senha...' onChange={InputPassword} type='password' />
-                        <CustomButtonPink text={'Google'} link={'#'} ativo onClick={GoogleButton} />
+                        <CustomInput title='e-mail' placehover='Digite o seu e-mail...' icon={email_icon} onChange={InputEmail} />
+                        <CustomInput title='senha' placehover='Digite a sua senha...' onChange={InputPassword} type='password' />
+                        {/* <CustomButtonPink text={'Google'} link={'#'} ativo onClick={GoogleButton} /> */}
                     </span>
                     <span>
                         <CustomButtonPink text={'Login'} link={'#'} ativo desativado={buttonOpacity} onClick={loginButton} />

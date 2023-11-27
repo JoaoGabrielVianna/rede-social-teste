@@ -8,6 +8,7 @@
   --color-White-CustomInput: #E3E3E3;
   /*Cor para o fundo do CustomInput*/
   --color-Pink-CustomInput: #F62046;
+  --color--background: #020913;
 }
 
 body {
@@ -17,7 +18,7 @@ body {
   align-items: center;
   overflow: hidden;
   overscroll-behavior-y: contain;
-  background-color: #020913;
+  background-color: var(--color--background);
 }
 
 h1 {
@@ -32,11 +33,13 @@ p {
 
 input {
   border: 0;
+  color: #ffffff;
   background-color: transparent;
 }
 
 input:focus {
   outline: none;
+  color: #ffffff;
 }
 
 .loading-skeleton {

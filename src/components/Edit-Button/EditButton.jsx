@@ -1,10 +1,12 @@
 import './EditButton.css'
 
+import edit_icon from '../../assets/svgs/edit-icon.svg'
+
 export default function EditButton({text = 'Editar', onClick}) {
     return (
         <>
             <main id="main-EditButton" onClick={(onClick)}>
-                <h1>{text}</h1>
+                <img src={edit_icon} alt="" />
             </main>
         </>
     )

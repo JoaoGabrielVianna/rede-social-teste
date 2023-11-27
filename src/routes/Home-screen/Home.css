@@ -11,10 +11,11 @@
 /* Componente para o header do perfil */
 #main-UserProfile {
   width: 320px;
-  height: 160px;
+  /* height: 160px; */
   display: flex;
   flex-direction: column;
   gap: 15px;
+  /* background-color: green; */
 }
 
 /* First Child contem a foto do usuario,  faculdade e os botoes */
@@ -71,8 +72,19 @@
 }
 
 /* Tamanho da letra da biografia */
-#main-UserProfile section:nth-child(2) p {
+#main-UserProfile .section-biografia {
+  width: 100px;
+  padding: 0px 0px 10px 10px;
+  /* background-color: red; */
+}
+#main-UserProfile .section-biografia p {
   font-size: 12px;
+}
+
+#main-UserProfile .section-user-metadata{
+  display: flex;
+  align-items: center;
+  gap: 20px;  
 }
 
 

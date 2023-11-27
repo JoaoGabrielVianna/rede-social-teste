@@ -10,34 +10,33 @@
     transition: .5s ease;
 }
 
-#main-PerfilSettingsPanel span{
+#main-PerfilSettingsPanel span {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
 /* Dando uma margem das opcoes para o Top do overlay */
-#main-PerfilSettingsPanel div:nth-child(1){
+#main-PerfilSettingsPanel div:nth-child(1) {
     margin: 75px 0px 0px 0px;
 }
 
 /* Configurando as opcoes do painel */
-#main-PerfilSettingsPanel div{
+#main-PerfilSettingsPanel div {
     width: 100%;
     height: 30px;
     display: flex;
     align-items: center;
     gap: 10px;
 }
+
 /* Configurando os icones */
-#main-PerfilSettingsPanel div img{
+#main-PerfilSettingsPanel div img {
     width: 24px;
     height: 24px;
     margin: 0px 0px 0px 20px;
-    background-color: grey;
 }
 
-#main-PerfilSettingsPanel div h1{
+#main-PerfilSettingsPanel div h1 {
     font-size: 16px;
 }
-

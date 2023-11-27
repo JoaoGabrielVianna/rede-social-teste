@@ -72,14 +72,21 @@ function UserProfile({ user }) {
                         <div>
                             <span><h1>{usuario.name}</h1></span>
                             <span><span className='status' style={{ backgroundColor: usuario.faculVerification === true ? 'green' : 'orange' }} /><h1>FIAP</h1></span>
-                            <span ><EditButton /> <EditButton text='Deletar' onClick={() => deleteUserAccount({ uid: user.uid, password: usuario.senha })} /></span>
+                            <span ><EditButton onClick={() => alert('')} /></span>
+                            {/* onClick={() => deleteUserAccount({ uid: user.uid, password: usuario.senha })} */}
                         </div>
                     </section>
 
-                    <section>
-                        <p className='biografia'>
-                            {usuario.biografia}
-                        </p>
+                    {usuario.biografia &&
+                        <section className='section-biografia'>
+                            <p>
+                                {usuario.biografia}
+                            </p >
+                        </section>}
+                    <section className='section-user-metadata'>
+                        <p>{usuario.seguidores} seguidores</p>
+                        <p>{usuario.seguindo} seguindo</p>
+                        <p>{usuario.selos} selos</p>
                     </section>
                 </>
             </main>

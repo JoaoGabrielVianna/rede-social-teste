@@ -100,19 +100,19 @@ export default function HomePage() {
     const { user, signed } = useUserAuth();
     const [usuario, setUsuario] = useState(null);
     const [SettingsPanel, setSettingsPanel] = useState(false)
-    // useEffect(() => {
-    //     const userDocRef = doc(db, "users", user.uid);
+    useEffect(() => {
+        const userDocRef = doc(db, "users", user.uid);
 
-    //     const unsub = onSnapshot(userDocRef, (doc) => {
-    //         setUsuario(null);
+        const unsub = onSnapshot(userDocRef, (doc) => {
+            setUsuario(null);
 
-    //         setTimeout(() => {
-    //             setUsuario(doc.data());
-    //         }, 1);
-    //     });
+            setTimeout(() => {
+                setUsuario(doc.data());
+            }, 1);
+        });
 
-    //     return () => unsub();
-    // }, []);
+        return () => unsub();
+    }, []);
 
     useEffect(() => {
 

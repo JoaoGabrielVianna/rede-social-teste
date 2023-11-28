@@ -139,7 +139,7 @@ export default function HomePage() {
         };
 
 
-
+// 
         obterUsuario();
     }, [signed]);
 

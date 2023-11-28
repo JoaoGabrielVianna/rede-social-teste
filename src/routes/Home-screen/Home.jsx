@@ -15,8 +15,6 @@ function UserProfile({ user }) {
     const [usuario, setUsuario] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
-
-
     useEffect(() => {
 
         const obterUsuario = async () => {
@@ -64,70 +62,57 @@ function UserProfile({ user }) {
             </main>);
     }
 
-    if (usuario) {
-        return (
-            <main id='main-UserProfile'>
-                <>
-                    <section key={usuario.uid}>
-                        <img src={usuario.photoURL ? usuario.photoURL : perfil_anonimo} onError={(e) => {
-                            e.target.src = perfil_anonimo; // Define a imagem de perfil anônimo em caso de erro
-                        }} />
-                        <div>
-                            <span><h1>{usuario.name}</h1></span>
-                            <span><span className='status' style={{ backgroundColor: usuario.faculVerification === true ? 'green' : 'orange' }} /><h1>FIAP</h1></span>
-                            <span ><EditButton onClick={() => alert('')} /></span>
-                            {/* onClick={() => deleteUserAccount({ uid: user.uid, password: usuario.senha })} */}
-                        </div>
-                    </section>
 
-                    {usuario.biografia &&
-                        <section className='section-biografia'>
-                            <p>
-                                {usuario.biografia}
-                            </p >
-                        </section>}
-                    <section className='section-user-metadata'>
-                        <p>{usuario.seguidores} seguidores</p>
-                        <p>{usuario.seguindo} seguindo</p>
-                        <p>{usuario.selos} selos</p>
-                    </section>
-                </>
-            </main>
-        );
-    }
+    return (
+        <main id='main-UserProfile'>
+            <>
+                <section key={usuario.uid}>
+                    <img src={usuario.photoURL ? usuario.photoURL : perfil_anonimo} onError={(e) => {
+                        e.target.src = perfil_anonimo; // Define a imagem de perfil anônimo em caso de erro
+                    }} />
+                    <div>
+                        <span><h1>{usuario.name}</h1></span>
+                        <span><span className='status' style={{ backgroundColor: usuario.faculVerification === true ? 'green' : 'orange' }} /><h1>FIAP</h1></span>
+                        <span ><EditButton onClick={() => alert('')} /></span>
+                        {/* onClick={() => deleteUserAccount({ uid: user.uid, password: usuario.senha })} */}
+                    </div>
+                </section>
+
+                {usuario.biografia &&
+                    <section className='section-biografia'>
+                        <p>
+                            {usuario.biografia}
+                        </p >
+                    </section>}
+                <section className='section-user-metadata'>
+                    <p>{usuario.seguidores} seguidores</p>
+                    <p>{usuario.seguindo} seguindo</p>
+                    <p>{usuario.selos} selos</p>
+                </section>
+            </>
+        </main>
+    );
+
 }
 
 
 export default function HomePage() {
-    const { user, signed, logOut } = useUserAuth();
+    const { user, signed } = useUserAuth();
     const [usuario, setUsuario] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
     const [SettingsPanel, setSettingsPanel] = useState(false)
-    const navigate = useNavigate()
-
-    // // Exemplo de como usar onAuthStateChanged e onSnapshot
-    // onAuthStateChanged(auth, (user) => {
-    //     if (user) {
-    //         const userDocRef = doc(db, 'users', user.uid);
-    //         onSnapshot(userDocRef, (doc) => {
-    //             console.log('Dados do usuário em tempo real:', doc.data());
-    //             setUsuario(doc.data())
-    //         });
-    //     }
-    // });
-
     useEffect(() => {
         const userDocRef = doc(db, "users", user.uid);
 
         const unsub = onSnapshot(userDocRef, (doc) => {
+            setUsuario(null);
 
-            setUsuario(doc.data());
-            navigate('/home')
-            console.log("Current data: ", doc.data());
+            setTimeout(() => {
+                setUsuario(doc.data());
+            }, 1);
         });
 
         return () => unsub();
-    }, [user.uid]);
+    }, []);
 
     useEffect(() => {
 
@@ -139,7 +124,7 @@ export default function HomePage() {
                 if (userDocSnapshot.exists()) {
                     const userData = userDocSnapshot.data();
                     setUsuario(userData);
-                    console.log(usuario)
+
                 } else {
                     console.log("Usuário não encontrado");
                     // logOut()
@@ -149,24 +134,26 @@ export default function HomePage() {
             } finally {
                 // Aguarda 1 segundo antes de tentar novamente
                 await new Promise((resolve) => setTimeout(resolve, 1000));
-                setIsLoading(false);
+                // setIsLoading(false);
             }
         };
 
+
+
         obterUsuario();
     }, [signed]);
-    
+
 
 
     if (usuario) {
         return (
             <>
-                {usuario &&
-                    <main id="main-home">
-                        <ProfileHeader text='Perfil' onClick={() => setSettingsPanel(!SettingsPanel)} />
-                        <UserProfile user={user} />
-                        <PerfilSettingsPanel show={SettingsPanel} user_uid={user.uid} user_password={usuario.senha} />
-                    </main>}
+
+                <main id="main-home">
+                    <ProfileHeader text='Perfil' onClick={() => setSettingsPanel(!SettingsPanel)} />
+                    <UserProfile user={user} />
+                    <PerfilSettingsPanel show={SettingsPanel} user_uid={user.uid} user_password={usuario.senha} />
+                </main>
 
             </>
         )

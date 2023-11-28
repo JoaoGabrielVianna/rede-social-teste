@@ -1,8 +1,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup, updateProfile, deleteUser, EmailAuthProvider, reauthenticateWithCredential
+import {
+  createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup, updateProfile, deleteUser, EmailAuthProvider, reauthenticateWithCredential
 } from "firebase/auth";
 import { auth, db, storage } from "../services/firebaseConfig";
-import { deleteDoc, doc, setDoc } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDoc, onSnapshot, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { deleteObject, getDownloadURL, getMetadata, list, listAll, ref, uploadBytes } from "firebase/storage";
 const userAuthContext = createContext();
@@ -13,6 +14,7 @@ const userAuthContext = createContext();
 export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
+  const [dados, setDados] = useState({});
   const navigate = useNavigate()
   function logIn(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
@@ -44,7 +46,7 @@ export function UserAuthContextProvider({ children }) {
         uid: userCredential.user.uid
       });
 
-      return { user: userCredential.user, autoLogin: false };
+      // return logOut;
     } catch (error) {
       console.error('Erro ao criar usuário:', error.message);
     }
@@ -102,16 +104,14 @@ export function UserAuthContextProvider({ children }) {
 
 
 
-
-
   useEffect(() => {
-    const checkAuthState = () => {
-      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    
+    const checkAuthState = async () => {
+      const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
         setUser(currentUser);
         setLoading(false); // Quando a verificação estiver concluída, atualize o estado para parar o indicador de carregamento
 
         if (currentUser) {
-          // Se o usuário estiver autenticado, redirecione para a rota /home
           navigate('/home');
         }
       });
@@ -125,6 +125,8 @@ export function UserAuthContextProvider({ children }) {
   }, []); // Certifique-se de fornecer um array vazio como segundo argumento para useEffect para garantir que seja executado apenas uma vez no montagem inicial
 
 
+
+
   if (loading) {
     return (<><p>Verificando estado de autenticação...</p></>)
   }
@@ -133,7 +135,7 @@ export function UserAuthContextProvider({ children }) {
   return (
 
     <userAuthContext.Provider
-      value={{ user, logIn, signUp, logOut, googleSignIn, deleteUserAccount, signed: !!user }}
+      value={{ user, logIn, signUp, logOut, googleSignIn, deleteUserAccount, signed: !!user, }}
     >
       {children}
     </userAuthContext.Provider>

@@ -30,6 +30,7 @@
   width: 83px;
   border-radius: 100%;
   object-fit: cover;
+  cursor: pointer;
 }
 
 /* Secao das informacoes do usuario (nome, faculdade...) */

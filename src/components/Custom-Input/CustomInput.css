@@ -3,6 +3,7 @@
     height: 42px;
     border-radius: 15px;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     align-self: center;
     gap: 10px;
@@ -10,41 +11,79 @@
     position: relative;
 }
 
-#main-CustomInput div {
-    width: 60px;
-    padding: 0px 10px;
-    /* height: 40px; */
-    top: -10px;
-    left: 20px;
+#main-CustomInput input {
+    width: 280px;
+    height: 42px;
+    border-radius: 0px 15px 15px 0px;
+    z-index: 1;
+}
 
+#main-CustomInput div {
+    height: 42px;
+    border-radius: 15px;
     position: absolute;
+    left: 10px;
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 10px;
     background-color: var(--color--background);
 }
 
-#main-CustomInput div p{
-    color: #505050;
-    font-size: 10;
-}
-
-#main-CustomInput .icon {
-    width: 25px;
-    height: 25px;
-    margin-left: 10px;
-}
-
-#main-CustomInput input {
-    width: 100%;
-    height: 90%;
-    border-radius: 15px;
-}
-
-#main-CustomInput .icon2 {
+#main-CustomInput div img {
     width: 30px;
-    height: 30px;
-    margin-right: 10px;
-    background-color: #0002;
+}
+
+#main-CustomInput p {
+    color: var(--color-Cinza);
+}
+
+
+/* FOCUS ATIVO */
+#main-CustomInput-focus {
+    width: 300px;
+    /* height: 42px; */
+    border-radius: 15px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    align-self: center;
+    gap: 10px;
+    border: 1px solid var(--color-White-CustomInput);
+    position: relative;
+}
+
+#main-CustomInput-focus input {
+    width: 280px;
+    height: 42px;
+    border-radius: 0px 15px 15px 0px;
+    z-index: 1;
+    /* background-color: green; */
+}
+
+#main-CustomInput-focus div {
+    height: 42px;
+    border-radius: 15px;
+    padding: 0px 10px;
+    position: absolute;
+    top: -22px;
+    left: 17px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--color--background);
+}
+
+#main-CustomInput-focus div img {
+    width: 20px;
+}
+
+#main-CustomInput-focus p {
+    color: var(--color-Cinza);
+}
+
+
+@keyframes shake {
+    25% { transform:  translateX(4px);}
+    50% { transform:  translateX(-4px);}
+    75% { transform:  translateX(4px);}
 }

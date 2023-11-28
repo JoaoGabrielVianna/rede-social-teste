@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import perfil_anonimo from '../../assets/svgs/perfil-anonimo.svg'
 
 import email_icon from '../../assets/svgs/icon-email.svg';
+import { db } from '../../services/firebaseConfig';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 
 export default function RegisterPage() {
     // Estados para controlar a camada (layer), opacidade do botão, mensagem de erro, e informações do usuário, e-mail e senha.
@@ -20,7 +22,7 @@ export default function RegisterPage() {
     // Layer 6: *TODO, fazer ajuste da foto*
     // Layer 7: Pede ao usuário para concluir o cadastro.
 
-    const [layer, setLayer] = useState(1);
+    const [layer, setLayer] = useState(2);
     const [buttonOpacity, setButtonOpacity] = useState(true);
     const [error, setError] = useState('');
     const [user, setUser] = useState('');
@@ -38,8 +40,78 @@ export default function RegisterPage() {
     useEffect(() => {
         if (layer >= 2 && layer <= 4) {
             setButtonOpacity(true);
+            console.clear();
         }
     }, [layer]);
+
+    useEffect(() => {
+        setError('');
+        setButtonOpacity(true);
+        if (layer === 2) {
+            const checkUserExistence = async () => {
+                try {
+                    const usersCollection = collection(db, 'users');
+                    const snapshot = await getDocs(usersCollection);
+
+                    snapshot.forEach((doc) => {
+                        const nameData = doc.data().name;
+
+                        if (nameData === undefined) {
+                            console.warn('Campo "name" não definido no documento:', doc.id);
+                            return; // Pule a iteração se o campo 'name' não estiver definido
+                        }
+
+                        // Converta para minúsculas antes de processar
+                        const lowerCaseName = nameData.toLowerCase();
+
+                        console.log('name:', lowerCaseName);
+
+                    });
+
+                    const querySnapshot = await getDocs(query(usersCollection, where('name', '==', user.toLowerCase())));
+                    const userExists = querySnapshot.docs.length > 0;
+
+                    setError(userExists ? 'Usuário existe!' : '');
+                    setButtonOpacity(!user || userExists);
+                } catch (error) {
+                    console.error('Erro ao verificar a existência do usuário:', error);
+                }
+
+
+
+            };
+
+            const timerId = setTimeout(checkUserExistence, 500);
+
+            return () => {
+                clearTimeout(timerId);
+            };
+        }
+
+    }, [user]);
+
+
+    // Efeito para verificar a senha criada
+    useEffect(() => {
+        setError('');
+        const timerId = setTimeout(() => {
+
+            if (layer === 3) {
+                const minLength = 6;
+                const remainingChars = minLength - password.length;
+
+                if (password.length < 6) {
+                    setError(`Digite mais ${remainingChars}  caracteres`);
+                } else {
+                    setError('');
+                }
+            }
+        }, 1000); // Aguarda 1 segundo antes de verificar se há erro
+
+        return () => clearTimeout(timerId); // Limpa o timer ao desmontar o componente ou redefinir o efeito
+    }, [password]);
+
+
 
     // Função para lidar com o clique no botão de registro
     const registerButton = async (e) => {
@@ -51,7 +123,8 @@ export default function RegisterPage() {
                 // Chama a função de registro do contexto
                 await signUp(email, password, user, photo);
                 // Navega para a página home após o registro
-                navigate('/home');
+                if (signed) { navigate('/home'); }
+
             } catch (err) {
                 setError(err.message);
             }
@@ -61,16 +134,7 @@ export default function RegisterPage() {
     // Função para avançar para a próxima camada (layer)
     const continueButton = () => {
         // Verifica se o botão está ativado antes de prosseguir
-        if (!buttonOpacity) {
-            // Condições específicas para cada camada (layer)
-            if (layer === 3 && password.length < 6) {
-                setError("A senha deve conter pelo menos 6 caracteres.");
-            } else if (layer === 2 && !user) {
-                setError("Escolha um nome de usuário.");
-            } else {
-                setLayer(layer + 1);
-            }
-        }
+        if (!buttonOpacity) { setLayer(layer + 1); }
     }
 
     // Função para retornar para a camada anterior (layer)
@@ -83,9 +147,9 @@ export default function RegisterPage() {
     // Funções para lidar com as mudanças nos campos de input
     const InputUser = (e) => {
         const inputValue = e.target.value;
-        setUser(inputValue);
+        setUser(inputValue.toLowerCase());
         // Lógica para verificar as condições e ajustar a opacidade
-        setButtonOpacity(!inputValue);
+        setButtonOpacity(user_Exists);
     };
 
     const InputPassword = (e) => {
@@ -141,7 +205,7 @@ export default function RegisterPage() {
                         <span className='span-layer-2'>
                             <GoBackButton onClick={returnButton} />
                             <span>
-                                <CustomInput title='usuário' placehover='Nome de usuário' onChange={InputUser} />
+                                <CustomInput title='usuário' placehover='Nome de usuário' onChange={InputUser} error={error} />
                             </span>
                             <span>
                                 <CustomButtonPink text={'Avançar'} ativo desativado={buttonOpacity} onClick={continueButton} />
@@ -151,7 +215,7 @@ export default function RegisterPage() {
                         <span className='span-layer-3'>
                             <GoBackButton onClick={returnButton} />
                             <span>
-                                <CustomInput title='senha' placehover='Digite sua senha' onChange={InputPassword} type='password' />
+                                <CustomInput title='senha' placehover='Digite sua senha' onChange={InputPassword} type='password' error={error} />
                             </span>
                             <span>
                                 <CustomButtonPink text={'Avançar'} onClick={continueButton} ativo desativado={buttonOpacity} />

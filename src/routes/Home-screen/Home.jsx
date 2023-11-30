@@ -11,35 +11,14 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 function UserProfile({ user }) {
-    const { signed, logOut } = useUserAuth();
-    const [usuario, setUsuario] = useState(null);
+    const { signed, logOut, usuario } = useUserAuth();
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate()
 
     useEffect(() => {
+        setIsLoading(false)
+    }, [usuario])
 
-        const obterUsuario = async () => {
-            try {
-                const userDocRef = doc(db, "users", user.uid);
-                const userDocSnapshot = await getDoc(userDocRef);
-
-                if (userDocSnapshot.exists()) {
-                    const userData = userDocSnapshot.data();
-                    setUsuario(userData);
-                } else {
-                    console.log("Usuário não encontrado");
-                    logOut()
-                }
-            } catch (error) {
-                console.error("Erro ao obter usuário:", error.message);
-            } finally {
-                // Aguarda 1 segundo antes de tentar novamente
-                await new Promise((resolve) => setTimeout(resolve, 1000));
-                setIsLoading(false);
-            }
-        };
-
-        obterUsuario();
-    }, [signed]);
 
     if (isLoading) {
         return (
@@ -62,8 +41,23 @@ function UserProfile({ user }) {
             </main>);
     }
 
+    const formatarNumero = (numero) => {
+        if (numero < 1000) {
+            return numero;
+        } else if (numero < 1000000) {
+            const resultado = numero / 1000;
+            return resultado % 1 === 0 ? `${resultado.toFixed(0)}k` : `${resultado.toFixed(1)}k`;
+        } else {
+            const resultado = numero / 1000000;
+            return resultado % 1 === 0 ? `${resultado.toFixed(0)}M` : `${resultado.toFixed(1)}M`;
+        }
+    };
+
+
+
 
     return (
+
         <main id='main-UserProfile'>
             <>
                 <section key={usuario.uid}>
@@ -72,9 +66,8 @@ function UserProfile({ user }) {
                     }} />
                     <div>
                         <span><h1>{usuario.name}</h1></span>
-                        <span><span className='status' style={{ backgroundColor: usuario.faculVerification === true ? 'green' : 'orange' }} /><h1>FIAP</h1></span>
-                        <span ><EditButton onClick={() => alert('')} /></span>
-                        {/* onClick={() => deleteUserAccount({ uid: user.uid, password: usuario.senha })} */}
+                        {usuario.faculdade && <span><span className='status' style={{ backgroundColor: usuario.faculVerification === true ? 'green' : 'orange' }} /><h1>{usuario.faculdade}</h1></span>}
+                        <span ><EditButton onClick={() => navigate('/editar-perfil')} /></span>
                     </div>
                 </section>
 
@@ -85,9 +78,9 @@ function UserProfile({ user }) {
                         </p >
                     </section>}
                 <section className='section-user-metadata'>
-                    <p>{usuario.seguidores} seguidores</p>
-                    <p>{usuario.seguindo} seguindo</p>
-                    <p>{usuario.selos} selos</p>
+                    <p><strong>{formatarNumero(usuario.seguidores)}</strong> seguidores</p>
+                    <p><strong>{formatarNumero(usuario.seguindo)}</strong> seguindo</p>
+                    <p><strong>{formatarNumero(usuario.selos)}</strong> selos</p>
                 </section>
             </>
         </main>
@@ -100,19 +93,7 @@ export default function HomePage() {
     const { user, signed } = useUserAuth();
     const [usuario, setUsuario] = useState(null);
     const [SettingsPanel, setSettingsPanel] = useState(false)
-    useEffect(() => {
-        const userDocRef = doc(db, "users", user.uid);
 
-        const unsub = onSnapshot(userDocRef, (doc) => {
-            setUsuario(null);
-
-            setTimeout(() => {
-                setUsuario(doc.data());
-            }, 1);
-        });
-
-        return () => unsub();
-    }, []);
 
     useEffect(() => {
 
@@ -139,7 +120,7 @@ export default function HomePage() {
         };
 
 
-// 
+        // 
         obterUsuario();
     }, [signed]);
 
@@ -150,9 +131,10 @@ export default function HomePage() {
             <>
 
                 <main id="main-home">
-                    <ProfileHeader text='Perfil' onClick={() => setSettingsPanel(!SettingsPanel)} />
+                    <ProfileHeader text='Perfil' onClick={() => { setSettingsPanel(!SettingsPanel), console.log(SettingsPanel) }} />
                     <UserProfile user={user} />
-                    <PerfilSettingsPanel show={SettingsPanel} user_uid={user.uid} user_password={usuario.senha} />
+                    <PerfilSettingsPanel show={SettingsPanel} Click={() => setSettingsPanel(!SettingsPanel)} user_uid={user.uid} user_password={usuario.senha} />
+                    {/* SettingsPanel */}
                 </main>
 
             </>

@@ -13,6 +13,7 @@ const userAuthContext = createContext();
 
 export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState({});
+  const [usuario, setUsuario] = useState(null);
   const [loading, setLoading] = useState(true);
   const [dados, setDados] = useState({});
   const navigate = useNavigate()
@@ -72,32 +73,37 @@ export function UserAuthContextProvider({ children }) {
   }
 
   async function deleteUserAccount({ uid, password }) {
-    console.log('ciclou')
+    console.log('Usuario Cliclou')
 
     // Reautenticar o usuário
     const credential = EmailAuthProvider.credential(user.email, password);
     await reauthenticateWithCredential(user, credential);
+    console.log('Usuario re-logou')
 
-    // Exclua o usuário no Firebase Authentication
-    await deleteUser(user);
 
     // Exclua os dados do usuário no Firestore
     const userDocRef = doc(db, "users", user.uid);
     await deleteDoc(userDocRef);
+    console.log('Usuario excluido do Firestore')
 
     const desertRef = ref(storage, `user_profiles/${uid}`);
 
     // Delete the file
     deleteObject(desertRef).then(() => {
-      console.log('excluiu')
+      console.log('Usuario excluiu foto de Perfil')
       // File deleted successfully
     }).catch((error) => {
       console.log('nao excluiu')
       // Uh-oh, an error occurred!
     });
 
+    // Exclua o usuário no Firebase Authentication
+    await deleteUser(user);
+    console.log('Usuario excluido do Firebase Authentication')
+
     // Desconecte o usuário (opcional, dependendo do seu fluxo)
     await signOut(auth);
+    console.log('Usuario se desconectou')
 
 
   }
@@ -124,6 +130,33 @@ export function UserAuthContextProvider({ children }) {
     checkAuthState();
   }, []); // Certifique-se de fornecer um array vazio como segundo argumento para useEffect para garantir que seja executado apenas uma vez no montagem inicial
 
+  useEffect(() => {
+
+    const obterUsuario = async () => {
+        try {
+            const userDocRef = doc(db, "users", user.uid);
+            const userDocSnapshot = await getDoc(userDocRef);
+
+            if (userDocSnapshot.exists()) {
+              console.log('achou')
+                const userData = userDocSnapshot.data();
+                setUsuario(userData);
+            } else {
+                console.log("Usuário não encontrado");
+                logOut()
+            }
+        } catch (error) {
+          return
+            console.error("Erro ao obter usuário:", error.message);
+        } finally {
+            // Aguarda 1 segundo antes de tentar novamente
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            setLoading(false);
+        }
+    };
+
+    obterUsuario();
+}, [user]);
 
 
 
@@ -135,7 +168,7 @@ export function UserAuthContextProvider({ children }) {
   return (
 
     <userAuthContext.Provider
-      value={{ user, logIn, signUp, logOut, googleSignIn, deleteUserAccount, signed: !!user, }}
+      value={{ user, logIn, signUp, logOut, googleSignIn, deleteUserAccount, signed: !!user, usuario }}
     >
       {children}
     </userAuthContext.Provider>

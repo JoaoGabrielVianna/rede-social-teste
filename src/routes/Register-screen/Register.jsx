@@ -11,6 +11,7 @@ import perfil_anonimo from '../../assets/svgs/perfil-anonimo.svg'
 import email_icon from '../../assets/svgs/icon-email.svg';
 import { db } from '../../services/firebaseConfig';
 import { collection, getDocs, query, where } from 'firebase/firestore';
+import EditButton from '../../components/Edit-Button/EditButton';
 
 export default function RegisterPage() {
     // Estados para controlar a camada (layer), opacidade do botão, mensagem de erro, e informações do usuário, e-mail e senha.
@@ -28,8 +29,7 @@ export default function RegisterPage() {
     const [user, setUser] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [photo, setPhoto] = useState()
-    const fileInputRef = useRef(null);
+    const [photo, setPhoto] = useState();
 
     // Hook para navegação no React Router
     const navigate = useNavigate();
@@ -40,11 +40,12 @@ export default function RegisterPage() {
     useEffect(() => {
         if (layer >= 2 && layer <= 4) {
             setButtonOpacity(true);
-            console.clear();
+            // console.clear();
         }
     }, [layer]);
 
     useEffect(() => {
+        console.clear();
         setError('');
         setButtonOpacity(true);
         if (layer === 2) {
@@ -65,7 +66,6 @@ export default function RegisterPage() {
                         const lowerCaseName = nameData.toLowerCase();
 
                         console.log('name:', lowerCaseName);
-
                     });
 
                     const querySnapshot = await getDocs(query(usersCollection, where('name', '==', user.toLowerCase())));
@@ -76,9 +76,6 @@ export default function RegisterPage() {
                 } catch (error) {
                     console.error('Erro ao verificar a existência do usuário:', error);
                 }
-
-
-
             };
 
             const timerId = setTimeout(checkUserExistence, 500);
@@ -87,21 +84,18 @@ export default function RegisterPage() {
                 clearTimeout(timerId);
             };
         }
-
     }, [user]);
-
 
     // Efeito para verificar a senha criada
     useEffect(() => {
         setError('');
         const timerId = setTimeout(() => {
-
             if (layer === 3) {
                 const minLength = 6;
                 const remainingChars = minLength - password.length;
 
                 if (password.length < 6) {
-                    setError(`Digite mais ${remainingChars}  caracteres`);
+                    setError(`Digite mais ${remainingChars} caracteres`);
                 } else {
                     setError('');
                 }
@@ -110,8 +104,6 @@ export default function RegisterPage() {
 
         return () => clearTimeout(timerId); // Limpa o timer ao desmontar o componente ou redefinir o efeito
     }, [password]);
-
-
 
     // Função para lidar com o clique no botão de registro
     const registerButton = async (e) => {
@@ -123,19 +115,22 @@ export default function RegisterPage() {
                 // Chama a função de registro do contexto
                 await signUp(email, password, user, photo);
                 // Navega para a página home após o registro
-                if (signed) { navigate('/home'); }
-
+                if (signed) {
+                    navigate('/home');
+                }
             } catch (err) {
                 setError(err.message);
             }
         }
-    }
+    };
 
     // Função para avançar para a próxima camada (layer)
     const continueButton = () => {
         // Verifica se o botão está ativado antes de prosseguir
-        if (!buttonOpacity) { setLayer(layer + 1); }
-    }
+        if (!buttonOpacity) {
+            setLayer(layer + 1);
+        }
+    };
 
     // Função para retornar para a camada anterior (layer)
     const returnButton = () => {
@@ -167,23 +162,13 @@ export default function RegisterPage() {
         setButtonOpacity(!emailRegex.test(inputValue));
     };
 
-    const InputChangePhoto = (e) => {
-        const selectedFile = e.target.files[0];
-
-        // Atualiza o estado setPhoto com o arquivo selecionado
-        setPhoto(selectedFile);
-
-        // Se desejar, você também pode armazenar ou exibir informações sobre o arquivo
-        console.log('Nome do arquivo:', selectedFile ? selectedFile.name : 'Nenhum arquivo selecionado');
-        console.log('Tipo do arquivo:', selectedFile ? selectedFile.type : 'Nenhum arquivo selecionado');
-        console.log('Tamanho do arquivo:', selectedFile ? selectedFile.size : 'Nenhum arquivo selecionado');
-    };
-
-    const InputClickPhoto = () => {
-        fileInputRef.current.click();
-    };
-
-
+    if (layer == 6) {
+        console.clear();
+        console.log('Usuario:', user);
+        console.log('Email:', email);
+        console.log('Senha:', password);
+        console.log('Foto:', photo.name);
+    }
 
     // Renderização condicional com base na autenticação
     if (!signed) {
@@ -192,16 +177,19 @@ export default function RegisterPage() {
                 <main id="main-register">
                     {error && <CustomAlert text={error} />}
                     {/* Renderização condicional com base na camada (layer) */}
-                    {layer === 1 ?
+                    {layer === 1 ? (
                         <span className='span-layer-1'>
                             <GoBackButton local={'/'} />
                             <h1>Como você deseja se registrar?</h1>
                             <span>
                                 <CustomButtonEmail onClick={() => setLayer(layer + 1)} />
                             </span>
-                        </ span> : ''}
+                        </span>
+                    ) : (
+                        ''
+                    )}
 
-                    {layer === 2 ?
+                    {layer === 2 ? (
                         <span className='span-layer-2'>
                             <GoBackButton onClick={returnButton} />
                             <span>
@@ -210,8 +198,11 @@ export default function RegisterPage() {
                             <span>
                                 <CustomButtonPink text={'Avançar'} ativo desativado={buttonOpacity} onClick={continueButton} />
                             </span>
-                        </ span> : ''}
-                    {layer === 3 ?
+                        </span>
+                    ) : (
+                        ''
+                    )}
+                    {layer === 3 ? (
                         <span className='span-layer-3'>
                             <GoBackButton onClick={returnButton} />
                             <span>
@@ -220,8 +211,11 @@ export default function RegisterPage() {
                             <span>
                                 <CustomButtonPink text={'Avançar'} onClick={continueButton} ativo desativado={buttonOpacity} />
                             </span>
-                        </ span> : ''}
-                    {layer === 4 ?
+                        </span>
+                    ) : (
+                        ''
+                    )}
+                    {layer === 4 ? (
                         <span className='span-layer-4'>
                             <GoBackButton onClick={returnButton} />
                             <span>
@@ -230,24 +224,29 @@ export default function RegisterPage() {
                             <span>
                                 <CustomButtonPink text={'Avançar'} onClick={continueButton} ativo desativado={buttonOpacity} />
                             </span>
-                        </ span> : ''}
+                        </span>
+                    ) : (
+                        ''
+                    )}
 
-                    {layer === 5 ?
+                    {layer === 5 ? (
                         <span className='span-layer-5'>
                             <span>
                                 <h1>Escolha um foto de perfil:{user}</h1>
                                 <div className="photo-perfil">
                                     <img className="icon" src={photo ? URL.createObjectURL(photo) : perfil_anonimo} />
-                                    <div className="input" onClick={InputClickPhoto} ><input type="file" id="fileInput" ref={fileInputRef} onChange={InputChangePhoto} accept="image/*" /></div>
+                                    <EditButton width='46px' height='46px' position='absolute' right='0' bottom='0' input photo={photo} setPhoto={setPhoto} />
                                 </div>
-
                             </span>
                             <span>
                                 <CustomButtonPink text={'Avançar'} onClick={continueButton} ativo />
                             </span>
-                        </ span> : ''}
+                        </span>
+                    ) : (
+                        ''
+                    )}
 
-                    {layer === 6 ?
+                    {layer === 6 ? (
                         <span className='span-layer-6'>
                             <span>
                                 <img className="icon" src={photo ? URL.createObjectURL(photo) : perfil_anonimo}></img>
@@ -256,9 +255,12 @@ export default function RegisterPage() {
                             <span>
                                 <CustomButtonPink text={'Concluir o cadastro'} onClick={registerButton} ativo />
                             </span>
-                        </ span> : ''}
+                        </span>
+                    ) : (
+                        ''
+                    )}
 
-                    {layer === 7 ?
+                    {layer === 7 ? (
                         <span className='span-layer-7'>
                             <span>
                                 <img className="icon" src={photo ? URL.createObjectURL(photo) : perfil_anonimo}></img>
@@ -267,11 +269,14 @@ export default function RegisterPage() {
                             <span>
                                 <CustomButtonPink text={'Concluir o cadastro'} onClick={registerButton} ativo />
                             </span>
-                        </ span> : ''}
+                        </span>
+                    ) : (
+                        ''
+                    )}
                 </main>
             </>
-        )
+        );
     } else {
-        navigate('/home')
+        navigate('/home');
     }
 }

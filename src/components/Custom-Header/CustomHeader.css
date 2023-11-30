@@ -3,12 +3,13 @@
     height: 100px;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 10px;
 }
 
 #main-CustomHeader h1{
     font-size: 20px;
+    white-space: nowrap;
 }
 
 #main-CustomHeader div:last-child{

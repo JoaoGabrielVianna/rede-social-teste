@@ -1,22 +1,40 @@
+.zone-touch {
+    top: 0;
+    width: 100vh;
+    height: 100vh;
+    position: fixed;
+    background-color: black;
+    opacity: 0.7;
+
+}
+
+
 /* Overley das Opcoes do Painel */
 #main-PerfilSettingsPanel {
+    max-height: 500px;
+    min-width: 100;
     width: 360px;
     height: 500px;
     border-radius: 50px 50px 0px 0px;
     border: 1px solid #ffffff;
+
+    justify-content: flex-start;
+    justify-content: center;
     position: absolute;
-    background-color: #020913;
     bottom: -1px;
     transition: .5s ease;
+
+    background-color: var(--color--background);
 }
 
 #main-PerfilSettingsPanel span {
     display: flex;
     flex-direction: column;
     gap: 10px;
+
 }
 
-#main-PerfilSettingsPanel span span{
+#main-PerfilSettingsPanel span span {
     width: 90%;
     height: 1px;
     align-self: center;
@@ -24,12 +42,12 @@
 }
 
 /* Dando uma margem das opcoes para o Top do overlay */
-#main-PerfilSettingsPanel div:nth-child(1) {
+#main-PerfilSettingsPanel .div:nth-child(1) {
     margin: 75px 0px 0px 0px;
 }
 
 /* Configurando as opcoes do painel */
-#main-PerfilSettingsPanel div {
+#main-PerfilSettingsPanel .div {
     width: 90%;
     height: 30px;
     padding: 5px 0px;
@@ -42,12 +60,87 @@
 }
 
 /* Configurando os icones */
-#main-PerfilSettingsPanel div img {
+#main-PerfilSettingsPanel .div img {
     width: 24px;
     height: 24px;
     margin: 0px 0px 0px 20px;
 }
 
-#main-PerfilSettingsPanel div h1 {
+#main-PerfilSettingsPanel .div h1 {
     font-size: 16px;
+}
+
+
+
+.zone-touch-customOverlayerButton {
+    top: 0;
+    left: 0;
+    width: 100vh;
+    height: 100vh;
+    position: fixed;
+    background-color: black;
+    opacity: 0.7;
+
+}
+
+
+#main-customOverlayerButton {
+    width: 320px;
+    height: 180px;
+
+    border-radius: 50px;
+    border: 1px solid #ffffff;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    cursor:pointer;
+    background-color: #0F1318;
+}
+
+#main-customOverlayerButton div {
+    width: 260px;
+    margin: 25px 0px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#main-customOverlayerButton div div {
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 0px;
+}
+
+#main-customOverlayerButton h1 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#main-customOverlayerButton p {
+    font-size: 16px;
+}
+
+#main-customOverlayerButton button {
+    width: 100px;
+    height: 30px;
+    margin: 20px 0px 0px 0px;
+    border-radius: 40px;
+    border: 0px;
+    cursor:pointer;
+}
+
+#main-customOverlayerButton button p {
+    font-weight: bold;
+}
+
+#main-customOverlayerButton button:nth-child(1) {
+    background-color: var(--color-Pink-CustomInput);
+}
+
+#main-customOverlayerButton button:nth-child(2) p {
+    color: #141414;
 }

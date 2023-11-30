@@ -5,17 +5,15 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  /* background-color: grey; */
+
 }
 
 /* Componente para o header do perfil */
 #main-UserProfile {
   width: 320px;
-  /* height: 160px; */
   display: flex;
   flex-direction: column;
   gap: 15px;
-  /* background-color: green; */
 }
 
 /* First Child contem a foto do usuario,  faculdade e os botoes */
@@ -74,8 +72,7 @@
 
 /* Tamanho da letra da biografia */
 #main-UserProfile .section-biografia {
-  width: 100px;
-  padding: 0px 0px 10px 10px;
+  padding: 0px 0px 10px 0px;
   /* background-color: red; */
 }
 #main-UserProfile .section-biografia p {
@@ -86,6 +83,17 @@
   display: flex;
   align-items: center;
   gap: 20px;  
+}
+
+#main-UserProfile .section-user-metadata p{
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-size: 15px;
+  cursor: pointer;
 }
 
 

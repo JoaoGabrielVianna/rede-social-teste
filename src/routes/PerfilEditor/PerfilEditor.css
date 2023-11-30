@@ -1,0 +1,23 @@
+#main-PerfilEditor {
+    width: 360px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    /* background-color: green; */
+}
+
+#main-PerfilEditor span {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+#main-PerfilEditor span span {
+    width: 100%;
+    height: 1px;
+
+    background-color: #C5C5C5;
+}
+

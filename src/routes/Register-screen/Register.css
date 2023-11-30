@@ -112,6 +112,7 @@
     align-self: auto;
 }
 
+
 #main-register .span-layer-5 span .photo-perfil {
     width: 120px;
     height: 120px;
@@ -124,7 +125,8 @@
 }
 
 #main-register .span-layer-5 span .photo-perfil .input {
-    width: 46px;
+    right: 0;
+    /* width: 46px;
     height: 46px;
     border-radius: 100%;
     position: absolute;
@@ -132,7 +134,7 @@
     right: 0;
     bottom: 0;
     background-image: url('../../assets/svgs/edit-icon.svg');
-    background-position: center;
+    background-position: center; */
 }
 
 #main-register .span-layer-5 span .photo-perfil .input input {

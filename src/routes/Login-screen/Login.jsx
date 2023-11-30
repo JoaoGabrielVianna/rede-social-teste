@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import { CustomButtonPink } from '../../components/Custom-Button/CustomButton';
-import CustomInput from '../../components/Custom-Input/CustomInput';
-import GoBackButton from '../../components/GoBack-Button/GoBackButton';
-import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../../context/userAuthContext';
 import CustomAlert from '../../components/Custom-Alert/CustomAlert';
+import { CustomButtonPink } from '../../components/Custom-Button/CustomButton';
+import CustomInput from '../../components/Custom-Input/CustomInput';
+import GoBackButton from '../../components/GoBack-Button/GoBackButton';
+import email_icon from '../../assets/svgs/icon-email.svg';
+import password_icon from '../../assets/svgs/icon-password.svg';
+import './Login.css';
 
-import email_icon from '../../assets/svgs/icon-email.svg'
-import password_icon from '../../assets/svgs/icon-password.svg'
 export default function LoginPage() {
     // Estados para controlar o botão, mensagens de erro e dados de entrada
     const [buttonOpacity, setButtonOpacity] = useState(true);
@@ -66,11 +66,8 @@ export default function LoginPage() {
     };
 
     useEffect(() => {
-        setError('')
-    }, [password, email])
-
-
-
+        setError('');
+    }, [password, email]);
 
     // Renderização condicional com base no status de autenticação
     if (!signed) {
@@ -80,8 +77,21 @@ export default function LoginPage() {
                     {error && <CustomAlert text={error} />}
                     <GoBackButton local={'/'} />
                     <span>
-                        <CustomInput title='Email' placehover='Digite o seu e-mail...' icon={email_icon} onChange={InputEmail} error={error} />
-                        <CustomInput title='Senha' placehover='Digite a sua senha...' icon={password_icon} onChange={InputPassword} error={error} type='password' />
+                        <CustomInput
+                            title='Email'
+                            placehover='Digite o seu e-mail...'
+                            icon={email_icon}
+                            onChange={InputEmail}
+                            error={error}
+                        />
+                        <CustomInput
+                            title='Senha'
+                            placehover='Digite a sua senha...'
+                            icon={password_icon}
+                            onChange={InputPassword}
+                            error={error}
+                            type='password'
+                        />
                         {/* <CustomButtonPink text={'Google'} link={'#'} ativo onClick={GoogleButton} /> */}
                     </span>
                     <span>

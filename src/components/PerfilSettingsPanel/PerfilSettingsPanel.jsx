@@ -68,7 +68,7 @@ export default function PerfilSettingsPanel({ show = true, Click, user_uid, user
   return (
     <>
       <div className='zone-touch' style={{ display: show ? 'flex' : 'none' }} onClick={Click}></div>
-      <main id="main-PerfilSettingsPanel" style={{ height: show ? '500px' : '0px', border: show ? '' : 0}}>
+      <main id="main-PerfilSettingsPanel" style={{ height: show ? '500px' : '0px', display: show ? '' : 'none' }}>
         <span>
           {options.map((opt) => (
             <div key={opt.key} onClick={opt.onClick} className='div'>

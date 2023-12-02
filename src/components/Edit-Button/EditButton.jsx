@@ -2,7 +2,7 @@ import './EditButton.css';
 import edit_icon from '../../assets/svgs/edit-icon.svg';
 import { useRef } from 'react';
 
-export default function EditButton({ onClick, position = 'relative', width = '25px', height = '25px', right, bottom, input = false, photo, setPhoto }) {
+export default function EditButton({ onClick, position = 'relative', width = '25px', height = '25px', right, bottom, input = false, photo, setPhoto, transparent }) {
   const fileInputRef = useRef(null);
 
   const InputClickPhoto = () => {

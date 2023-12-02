@@ -5,6 +5,7 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+
     /* background-color: green; */
 }
 
@@ -20,4 +21,3 @@
 
     background-color: #C5C5C5;
 }
-

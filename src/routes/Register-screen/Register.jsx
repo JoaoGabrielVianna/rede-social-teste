@@ -193,7 +193,7 @@ export default function RegisterPage() {
                         <span className='span-layer-2'>
                             <GoBackButton onClick={returnButton} />
                             <span>
-                                <CustomInput title='usuário' placehover='Nome de usuário' onChange={InputUser} error={error} />
+                                <CustomInput icon='user' title='usuário' placehover='Nome de usuário' onChange={InputUser} error={error} />
                             </span>
                             <span>
                                 <CustomButtonPink text={'Avançar'} ativo desativado={buttonOpacity} onClick={continueButton} />
@@ -206,7 +206,7 @@ export default function RegisterPage() {
                         <span className='span-layer-3'>
                             <GoBackButton onClick={returnButton} />
                             <span>
-                                <CustomInput title='senha' placehover='Digite sua senha' onChange={InputPassword} type='password' error={error} />
+                                <CustomInput icon='password' title='senha' placehover='Digite sua senha' onChange={InputPassword} type='password' error={error} />
                             </span>
                             <span>
                                 <CustomButtonPink text={'Avançar'} onClick={continueButton} ativo desativado={buttonOpacity} />
@@ -219,7 +219,7 @@ export default function RegisterPage() {
                         <span className='span-layer-4'>
                             <GoBackButton onClick={returnButton} />
                             <span>
-                                <CustomInput icon={email_icon} title='e-mail' placehover='Digite seu e-mail' onChange={InputEmail} type='email' />
+                                <CustomInput icon='email' title='e-mail' placehover='Digite seu e-mail' onChange={InputEmail} type='email' />
                             </span>
                             <span>
                                 <CustomButtonPink text={'Avançar'} onClick={continueButton} ativo desativado={buttonOpacity} />

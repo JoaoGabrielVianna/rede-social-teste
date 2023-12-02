@@ -5,8 +5,6 @@ import CustomAlert from '../../components/Custom-Alert/CustomAlert';
 import { CustomButtonPink } from '../../components/Custom-Button/CustomButton';
 import CustomInput from '../../components/Custom-Input/CustomInput';
 import GoBackButton from '../../components/GoBack-Button/GoBackButton';
-import email_icon from '../../assets/svgs/icon-email.svg';
-import password_icon from '../../assets/svgs/icon-password.svg';
 import './Login.css';
 
 export default function LoginPage() {
@@ -80,14 +78,14 @@ export default function LoginPage() {
                         <CustomInput
                             title='Email'
                             placehover='Digite o seu e-mail...'
-                            icon={email_icon}
+                            icon='email'
                             onChange={InputEmail}
                             error={error}
                         />
                         <CustomInput
                             title='Senha'
                             placehover='Digite a sua senha...'
-                            icon={password_icon}
+                            icon='password'
                             onChange={InputPassword}
                             error={error}
                             type='password'

@@ -9,8 +9,6 @@ import { deleteObject, getDownloadURL, getMetadata, list, listAll, ref, uploadBy
 const userAuthContext = createContext();
 
 
-0
-
 export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState({});
   const [usuario, setUsuario] = useState(null);
@@ -111,7 +109,7 @@ export function UserAuthContextProvider({ children }) {
 
 
   useEffect(() => {
-    
+
     const checkAuthState = async () => {
       const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
         setUser(currentUser);
@@ -133,30 +131,30 @@ export function UserAuthContextProvider({ children }) {
   useEffect(() => {
 
     const obterUsuario = async () => {
-        try {
-            const userDocRef = doc(db, "users", user.uid);
-            const userDocSnapshot = await getDoc(userDocRef);
+      try {
+        const userDocRef = doc(db, "users", user.uid);
+        const userDocSnapshot = await getDoc(userDocRef);
 
-            if (userDocSnapshot.exists()) {
-              console.log('achou')
-                const userData = userDocSnapshot.data();
-                setUsuario(userData);
-            } else {
-                console.log("Usuário não encontrado");
-                logOut()
-            }
-        } catch (error) {
-          return
-            console.error("Erro ao obter usuário:", error.message);
-        } finally {
-            // Aguarda 1 segundo antes de tentar novamente
-            await new Promise((resolve) => setTimeout(resolve, 1000));
-            setLoading(false);
+        if (userDocSnapshot.exists()) {
+          console.log('achou')
+          const userData = userDocSnapshot.data();
+          setUsuario(userData);
+        } else {
+          console.log("Usuário não encontrado");
+          logOut()
         }
+      } catch (error) {
+        return
+        console.error("Erro ao obter usuário:", error.message);
+      } finally {
+        // Aguarda 1 segundo antes de tentar novamente
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        setLoading(false);
+      }
     };
 
     obterUsuario();
-}, [user]);
+  }, [user]);
 
 
 

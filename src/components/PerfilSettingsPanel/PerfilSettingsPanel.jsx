@@ -2,24 +2,9 @@ import { useUserAuth } from '../../context/userAuthContext'
 import './PerfilSettingsPanel.css'
 import help_icon from '../../assets/svgs/icon-help.svg'
 import { useState } from 'react'
+import { CustomOverlayerButton } from '../Custom-Button/CustomButton';
 
-function CustomOverlayerButton({ show = true, title = 'Titulo Exemplo', text = 'Paragrafo exemplo', option_1 = 'Sair', option_2 = 'Voltar', onClick_opt1, onClick_opt2 }) {
-  return (
-    <>
-      <div className='zone-touch-customOverlayerButton' style={{ display: show ? 'flex' : 'none' }} ></div>
-      <main id="main-customOverlayerButton" style={{ display: show ? 'flex' : 'none' }}>
-        <div>
-          <h1>{title}</h1>
-          <p>{text}</p>
-          <div>
-            <button onClick={onClick_opt1}><p>{option_1}</p></button>
-            <button onClick={onClick_opt2}><p>{option_2}</p></button>
-          </div>
-        </div>
-      </main>
-    </>
-  )
-}
+
 
 
 export default function PerfilSettingsPanel({ show = true, Click, user_uid, user_password }) {
